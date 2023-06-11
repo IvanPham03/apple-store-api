@@ -1,14 +1,16 @@
+import express from "express";
+import cors from "cors";
+import iphoneRoutes from './routes/iphoneRoutes.js'
 
-const express = require('express');
 const app = express();
 
-// Định nghĩa các route và xử lý yêu cầu
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-
-// Khởi động server
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// Setup Connection to DB
+// Middlewares
+app.use(express.json());
+app.use(cors())
+// GROUP APP ROUTES
+app.use('/iphone', iphoneRoutes);
+// Start server
+app.listen(3001, () => {
+  console.log("listen 3000");
 });
