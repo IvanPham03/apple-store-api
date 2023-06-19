@@ -1,16 +1,7 @@
-import express from "express";
-import cors from "cors";
-import iphoneRoutes from './routes/iphoneRoutes.js'
+import app from './app.js'
 
-const app = express();
+const PORT = process.env.PORT
 
-// Setup Connection to DB
-// Middlewares
-app.use(express.json());
-app.use(cors())
-// GROUP APP ROUTES
-app.use('/iphone', iphoneRoutes);
-// Start server
-app.listen(3001, () => {
-  console.log("listen 3000");
-});
+app.listen(PORT , ()=>{
+  console.log('running at port:', PORT)
+})

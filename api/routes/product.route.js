@@ -4,16 +4,16 @@
 //  hiện các tác vụ cần thiết. Điều này giúp tách biệt việc định tuyến và xử lý logic kinh doanh.
 
 import express from "express";
-import iphoneControllers from '../controllers/iphone.js';
+import productControllers from '../controllers/product.controller.js';
 
 
 
 const router = express.Router();
-const iphone = new iphoneControllers();
+const product = new productControllers();
 
-router.get('/', iphone.getAllIphone);
-router.get('/:id', iphone.getIphoneById);
-// router.post('/:id', iphone.addIphone);
-// router.put('/:id', iphone.updateIphone);
-router.post('/insert-iphone-test', iphone.insertTest)
+router.get('/', product.getAllproduct);
+router.get('/:id', product.getproductById);
+// router.post('/:id', product.addIphone);
+// router.put('/:id', product.updateIphone);
+router.post('/insert-iphone-test', product.insertTest)
 export default router
