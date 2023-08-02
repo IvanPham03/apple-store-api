@@ -4,7 +4,7 @@ import productServices from "../services/product.service.js";
 const productService = new productServices();
 export default class productControllers {
   // load data
-  async getAllproduct(req, res, next) {
+  async getAllproduct(req, res) {
     try {
       let products = await productService.getAll();
       return res.json(products).status(200);

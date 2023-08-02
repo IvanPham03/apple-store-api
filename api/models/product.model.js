@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { connect } from "../config/connect.js";
+import { connect } from "../config/db.config.js";
 
 
 // select database
@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-  },
+  },  
   price: {
     type: Number,
     required: true,

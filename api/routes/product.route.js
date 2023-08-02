@@ -8,12 +8,12 @@ import productControllers from '../controllers/product.controller.js';
 
 
 
-const router = express.Router();
+const routeProduct = express.Router();
 const product = new productControllers();
 
-router.get('/', product.getAllproduct);
-router.get('/:id', product.getproductById);
+routeProduct.get('/', product.getAllproduct);
+routeProduct.get('/:id', product.getproductById);
 // router.post('/:id', product.addIphone);
 // router.put('/:id', product.updateIphone);
-router.post('/insert-iphone-test', product.insertTest)
-export default router
+routeProduct.post('/insert-iphone-test', product.insertTest)
+export default routeProduct

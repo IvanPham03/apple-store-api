@@ -1,3 +1,0 @@
-post http://localhost:3001/iphone/insert-iphone-test
-
-GET http://localhost:3001/iphone/
