@@ -43,6 +43,8 @@ const isToken = (req, res, next) => {
   });
 };
 
-export const verifySignup = {
+const verifySignup = {
   checkDuplicateEmailOrNumberphone
 };
+
+export default verifySignup

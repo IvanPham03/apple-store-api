@@ -11,5 +11,6 @@ authUser.post(
   auth.signUp
 );
 authUser.post(`/auth/signin`, auth.signIn);
+authUser.get(`/auth/test`, [middleware.authJWT.verifyToken]);
 
 export default authUser;

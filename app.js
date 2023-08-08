@@ -3,8 +3,8 @@ import cors from "cors";
 import productRoutes from './api/routes/product.route.js'
 import authRoutes from './api/routes/auth.route.js'
 import { initialUser } from "./api/config/initial.config.js";
+import redis from './api/config/redis.config.js'
 const app = express();
-
 // Setup Connection to DB
 // Middlewares
 // parse requests of content-type - application/json

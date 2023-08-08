@@ -1,22 +1,26 @@
-import { Jwt } from "jsonwebtoken";
-
+import jwt from "jsonwebtoken";
+import createHttpError from "http-errors";
 const verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
-
-  if (!token) {
-    return res.status(403).send({ message: "No token provided!" });
+  if(!req.headers["authorization"]){
+    return next(createHttpError.Unauthorized)
   }
-
-  jwt.verify(token, config.secret, (err, decoded) => {
-    if (err) {
-      return res.status(401).send({
-        message: "Unauthorized!",
-      });
+  const headerToken = req.headers['authorization'].split(' ')
+  const token = headerToken[1]
+  jwt.verify(
+    token, process.env.KEY_ACCESS_TOKEN, (err, payload) =>{
+      console.log(payload)
+      if(err){
+        return next(createHttpError.Unauthorized)
+      }
+      req.payload = payload
+      next()
     }
-    req.userId = decoded.id;
-    next();
-  });
+  )
+  
 };
-export default authJWT = {
+const authJWT = {
     verifyToken,
 }
+
+
+export default authJWT 

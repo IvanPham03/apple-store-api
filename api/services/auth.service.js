@@ -1,6 +1,8 @@
+import bcrypt from "bcryptjs";
 import { Error } from "mongoose";
 import User from "../models/user.model.js";
-import bcrypt from "bcryptjs";
+import jwt_service from "../config/jwt.js";
+import client from "../config/redis.config.js";
 export default class authServices {
   async signUp(req, res) {
     try {
@@ -23,7 +25,7 @@ export default class authServices {
         role: req.body.role,
         password: req.body.password
       });
-      await newUser.save(req.body);
+      await newUser.save();
       return res
         .status(200)
         .send({ message: "resgister new user successfully!" });
@@ -45,8 +47,19 @@ export default class authServices {
       if (!user) {
         return res.status(500).json("User not found!");
       }
-      // Check if the provided password matches the user's password
-      return await user.isCheckPassword(password);
+      const isValid = await user.isCheckPassword(password);
+      if (!isValid) {
+        return res
+          .status(500)
+          .json("The user or password and password your provided are invalid!");
+      }
+      const accessToken = await jwt_service.signAccessToken(
+        user._id,
+      );
+      const refreshToken = await jwt_service.signRefreshToken(
+        user._id,
+      );
+      return [{ accessToken: accessToken, refreshToken: refreshToken , userId: user._id}];
     } catch (error) {
       throw new Error(error);
     }
