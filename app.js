@@ -14,7 +14,7 @@ app.use(cors())
 await initialUser()
 // GROUP APP ROUTES
 app.use('/iphone', productRoutes);
-app.use('/api', authRoutes);
+app.use('/auth', authRoutes);
 
 // Handle error when not match route 
 app.use((req, res, next) =>{

@@ -17,6 +17,7 @@ export default class authControllers {
     }
   }
   async signIn(req, res) {
+    console.log('request ', req.body)
     try {
       const { error } = validation.userValidationSignIn(req.body);
       // check paramaters
