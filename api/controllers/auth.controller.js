@@ -42,7 +42,7 @@ export default class authControllers {
           accessToken,
         )
         .status(200)
-        .json("success");
+        .json(accessToken);
       // }
     } catch (error) {
       throw new Error(error);
