@@ -17,7 +17,7 @@ export default class authControllers {
     }
   }
   async signIn(req, res) {
-    console.log('request ', req.body)
+    console.log("request ", req.body);
     try {
       const { error } = validation.userValidationSignIn(req.body);
       // check paramaters
@@ -27,7 +27,7 @@ export default class authControllers {
       const getToken = await authService.signIn(req, res);
       // not correct passwort return
       if (!getToken) {
-        return res.status(500).json("wrong password!");
+        return res.status(401).json("UnAuthorization");
       }
       const [{ accessToken, refreshToken, userId }] = getToken;
       try {
@@ -37,9 +37,10 @@ export default class authControllers {
         throw new Error(error);
       }
       return res
-        .cookie("access-token", accessToken, {
-          httpOnly: true
-        })
+        .cookie(
+          "access-token",
+          accessToken,
+        )
         .status(200)
         .json("success");
       // }

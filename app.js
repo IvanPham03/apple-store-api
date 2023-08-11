@@ -7,9 +7,14 @@ import redis from './api/config/redis.config.js'
 const app = express();
 // Setup Connection to DB
 // Middlewares
-// parse requests of content-type - application/json
 app.use(express.json());
-app.use(cors())
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+// parse requests of content-type - application/json
+app.use(cors(corsOptions))
 // create user if not count when start  
 await initialUser()
 // GROUP APP ROUTES

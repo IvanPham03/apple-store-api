@@ -9,7 +9,7 @@ const signAccessToken = async (userId) => {
     };
     const secret = KEY_ACCESS_TOKEN;
     const options = {
-      expiresIn: "30m"
+      expiresIn: "60m"
     };
     jwt.sign(payload, secret, options, (err, token) => {
       if (token) resovle(token);

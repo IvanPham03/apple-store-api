@@ -45,13 +45,11 @@ export default class authServices {
         user = await User.findOne({ phone });
       }
       if (!user) {
-        return res.status(500).json("User not found!");
+        return;
       }
       const isValid = await user.isCheckPassword(password);
       if (!isValid) {
-        return res
-          .status(500)
-          .json("The user or password and password your provided are invalid!");
+        return;
       }
       const accessToken = await jwt_service.signAccessToken(
         user._id,
