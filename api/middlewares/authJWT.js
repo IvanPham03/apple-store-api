@@ -17,8 +17,28 @@ const verifyToken = (req, res, next) => {
     }
   )
 };
+const verifyRefreshToken = (req, res, next) =>{
+  // console.log('header', req.headers['authorization']);
+  if(!req.headers['authorization']){
+    return next(createHttpError.Unauthorized)
+  }
+  const headerRefreshToken = req.headers['authorization'].split(' ')
+  const token = headerRefreshToken[1]
+  // console.log('token', token);
+  jwt.verify(
+    token, process.env.KEY_REFRESH_TOKEN, (err, payload)=>{
+      if(err)
+      {
+        return next(createHttpError.Unauthorized)
+      }
+      req.payload = payload
+      next()
+    }
+  )
+}
 const authJWT = {
     verifyToken,
+    verifyRefreshToken, 
 }
 
 

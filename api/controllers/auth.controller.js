@@ -31,21 +31,31 @@ export default class authControllers {
       }
       const [{ accessToken, refreshToken, userId }] = getToken;
       try {
-        await client.set(userId.toString(), refreshToken);
-        await client.expire(userId.toString(), 60 * 60 * 24 * 30);
+        const set1 = await client.set(userId.toString(), refreshToken);
+        const set2 = await client.expire(userId.toString(), 60 * 60 * 24 * 30);
+        console.log('client success', set1)
+        console.log('client success', set2)
       } catch (error) {
         throw new Error(error);
       }
       return res
-        .cookie(
-          "access-token",
-          accessToken,
-        )
+        .cookie("access-token", accessToken)
+        .cookie("refresh-token", refreshToken)
         .status(200)
         .json(accessToken);
       // }
     } catch (error) {
       throw new Error(error);
     }
+  }
+  async logOut(req, res) { 
+    try {
+      const userId = req.payload.userId
+      await client.DEL(userId)
+      return res.status(200).json('Logout success!')
+    } catch (error) {
+      throw new Error(error)
+    }
+
   }
 }

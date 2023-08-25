@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { connect } from "../config/db.config.js";
 
 // select database
-const db = connect.useDb("userline");
+const db = connect.useDb("userDb");
 
 const userSchema = new mongoose.Schema(
   {

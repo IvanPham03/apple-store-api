@@ -1,53 +1,93 @@
 import mongoose from "mongoose";
 import { connect } from "../config/db.config.js";
 
-
 // select database
-const db = connect.useDb('productline');
-
-const productSchema = new mongoose.Schema({
-  model: {
-    type: String,
-    required: true,
+const db = connect.useDb("productDb");
+const productSchema = new mongoose.Schema(
+  {
+    category: {
+      type: String,
+      required: true
+    },
+    model: {
+      type: String,
+      required: true
+    },
+    img: [
+      {
+        type: String
+      }
+    ],
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    discount: {
+      type: Number,
+      default: 0,
+      min: 0, // Giới hạn tối thiểu
+      max: 100
+    },
+    ram: {
+      type: String,
+      required: true
+    },
+    priceDiscounted: {
+      type: Number,
+      default: function() {
+        // Tính toán giá sau giảm giá và trả về giá trị mặc định
+        return this.price - this.discount / 100 * this.price;
+      }
+    },
+    ratings: [
+      {
+        user: { type: String, required: true },
+        rating: { type: Number, required: true }
+      }
+    ],
+    storage: {
+      type: String,
+      required: true
+    },
+    color: [
+      {
+        colorName: { type: String, required: true },
+        value: { type: String, required: true }
+      }
+    ],
+    quantity: {
+      total: {
+        type: Number,
+        default: 0
+      },
+      remain: {
+        type: Number,
+        default: 0
+      }
+    },
+    detail: {
+      screen: String,
+      screentech: String,
+      camera: String,
+      processor: String,
+      storage: String,
+      battery: String,
+      connectivity: String,
+      operating: String,
+      audio: String,
+      sim: String,
+      design: String,
+      dimensions: String,
+      weight: String,
+      additional: String
+    }
   },
-  category:{
-    type: String,
-    // required: true,
-  },
-  img: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },  
-  price: {
-    type: Number,
-    required: true,
-  },
-  rate: {
-    type: Number,
-    default: 0,
-  },
-  discount: {
-    type: Number,
-    default: 0,
-  },
-  storage: {
-    type: Number,
-    required: true,
-  },
-  color: {
-    type: String,
-    required: true,
-  },
-  amount:{
-    type: Number, 
-    required: true
-  }
-  
-}, {timestamnps: true});
+  { timestamps: true }
+);
 
 const Product = db.model("product", productSchema);
 

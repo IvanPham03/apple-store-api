@@ -16,9 +16,9 @@ const corsOptions ={
 // parse requests of content-type - application/json
 app.use(cors(corsOptions))
 // create user if not count when start  
-await initialUser()
+await initialUser() 
 // GROUP APP ROUTES
-app.use('/iphone', productRoutes);
+app.use('/product', productRoutes);
 app.use('/auth', authRoutes);
 
 // Handle error when not match route 

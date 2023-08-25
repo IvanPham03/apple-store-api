@@ -8,10 +8,11 @@ const auth = new authControllers();
 const user = new userControllers()
 authUser.post(
   `/signup`,
-  [middleware.verifySignup.checkDuplicateEmailOrNumberphone],
+  [middleware.verifySignUp.checkDuplicateEmailOrNumberphone],
   auth.signUp
 );
 authUser.post(`/signin`, auth.signIn);
 authUser.get(`/user`, [middleware.authJWT.verifyToken], user.getUser);
+authUser.post(`/logout`, [middleware.authJWT.verifyRefreshToken], auth.logOut)
 
 export default authUser;

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const KEY_ACCESS_TOKEN = process.env.KEY_ACCESS_TOKEN;
-
+const KEY_REFRESH_TOKEN = process.env.KEY_REFRESH_TOKEN
 const signAccessToken = async (userId) => {
   return new Promise((resovle, reject) => {
     const payload = {
@@ -23,7 +23,7 @@ const signRefreshToken = async (userId) => {
     const payload = {
       userId,
     };
-    const secret = KEY_ACCESS_TOKEN;
+    const secret = KEY_REFRESH_TOKEN;
     const options = {
       expiresIn: "30d"
     };

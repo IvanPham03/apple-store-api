@@ -5,15 +5,15 @@
 
 import express from "express";
 import productControllers from '../controllers/product.controller.js';
+import middleware from "../middlewares/index.js";
 
-
-
+ 
 const routeProduct = express.Router();
 const product = new productControllers();
 
-routeProduct.get('/', product.getAllproduct);
-routeProduct.get('/:id', product.getproductById);
-// router.post('/:id', product.addIphone);
-// router.put('/:id', product.updateIphone);
+routeProduct.get('/', product.getProducts);
+routeProduct.get('/filter-product/', product.getFilterProducts)
 routeProduct.post('/insert-iphone-test', product.insertTest)
-export default routeProduct
+routeProduct.get('/:model', product.getproductByModel);
+routeProduct.get('/iphone/:id', product.getIphoneById);
+export default routeProduct 
