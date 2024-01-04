@@ -20,3 +20,7 @@ tác vụ trung gian trước khi yêu cầu đến các controller. Middleware
 
 
 # apple-store-api
+
+
+config file  .env
+DB_URI=

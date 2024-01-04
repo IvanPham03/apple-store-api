@@ -1,499 +1,793 @@
+const detail = {
+  yearintroduced: 2023,
+  color: [
+    {
+      name: "Black",
+      path: "/abc/img.jpg"
+    },
+    {
+      name: "White",
+      path: "/abc/img.jpg"
+    },
+    {
+      name: "Red",
+      path: "/abc/img.jpg"
+    }
+  ],
+  capacity: ["64GB", "128GB", "256GB"],
+  size: {
+    width: "3.02 inches (76.7 mm)",
+    height: "6.29 inches (159.9 mm)",
+    hepth: "0.32 inch (8.25 mm)",
+    weight: "7.81 ounces (221 grams)"
+  },
+  display: [
+    "Super Retina XDR display",
+    "6.7‑inch (diagonal) all‑screen OLED display",
+    "2796‑by‑1290-pixel resolution at 460 ppi",
+    "Dynamic Island",
+    "Always-On display",
+    "ProMotion technology with adaptive refresh rates up to 120Hz",
+    "HDR display",
+    "True Tone",
+    "Wide color (P3)",
+    "Haptic Touch",
+    "2,000,000:1 contrast ratio (typical)",
+    "1000 nits max brightness (typical); 1600 nits peak brightness (HDR); 2000 nits peak brightness (outdoor)",
+    "Fingerprint-resistant oleophobic coating",
+    "Support for display of multiple languages and characters simultaneously"
+  ],
+  resitant:
+    "Rated IP68 (maximum depth of 6 meters up to 30 minutes) under IEC standard 60529",
+  chip: [
+    "A16 Bionic chip",
+    "6‑core CPU with 2 performance and 4 efficiency cores",
+    "5‑core GPU",
+    "16‑core Neural Engine"
+  ],
+  camera: [
+    "48MP Main: 26 mm, ƒ/1.6 aperture, sensor‑shift optical image stabilization, 100% Focus Pixels, support for super-high-resolution photos (24MP and 48MP)",
+    "12MP Ultra Wide: 13 mm, ƒ/2.4 aperture and 120° field of view",
+    "12MP 2x Telephoto (enabled by quad-pixel sensor): 52 mm, ƒ/1.6 aperture, sensor-shift optical image stabilization, 100% Focus Pixels 2x optical zoom in",
+    "2x optical zoom out; 4x optical zoom range",
+    "Digital zoom up to 10x",
+    "Sapphire crystal lens cover",
+    "True Tone flash",
+    "Photonic Engine",
+    "Deep Fusion",
+    "Smart HDR 5",
+    "Next-generation portraits with Focus and Depth Control",
+    "Portrait Lighting with six effects",
+    "Night mode",
+    "Panorama (up to 63MP)",
+    "Photographic Styles",
+    "Wide color capture for photos and Live Photos",
+    "Lens correction (Ultra Wide)",
+    "Advanced red‑eye correction",
+    "Auto image stabilization",
+    "Burst mode",
+    "Photo geotagging",
+    "Image formats captured: HEIF and JPEG"
+  ],
+  videoRecording: [
+    "4K video recording at 24 fps, 25 fps, 30 fps, or 60 fps",
+    "1080p HD video recording at 25 fps, 30 fps, or 60 fps",
+    "720p HD video recording at 30 fps",
+    "Cinematic mode up to 4K HDR at 30 fps",
+    "Action mode up to 2.8K at 60 fps",
+    "HDR video recording with Dolby Vision up to 4K at 60 fps",
+    "Slo‑mo video support for 1080p at 120 fps or 240 fps",
+    "Time‑lapse video with stabilization",
+    "Night mode Time-lapse",
+    "QuickTake video",
+    "Sensor-shift optical image stabilization for video (Main)",
+    "Digital zoom up to 6x",
+    "Audio zoom",
+    "True Tone flash",
+    "Cinematic video stabilization (4K, 1080p, and 720p)",
+    "Continuous autofocus video",
+    "Take 8MP still photos while recording 4K video",
+    "Playback zoom",
+    "Video formats recorded: HEVC and H.264",
+    "Stereo recording"
+  ],
+  trueDepthCamera: [
+    "12MP camera",
+    "ƒ/1.9 aperture",
+    "Autofocus with Focus Pixels",
+    "Retina Flash",
+    "Photonic Engine",
+    "Deep Fusion",
+    "Smart HDR 5",
+    "Next-generation portraits with Focus and Depth Control",
+    "Portrait Lighting with six effects",
+    "Animoji and Memoji",
+    "Night mode",
+    "Photographic Styles",
+    "Wide color capture for photos and Live Photos",
+    "Lens correction",
+    "Auto image stabilization",
+    "Burst mode",
+    "4K video recording at 24 fps, 25 fps, 30 fps, or 60 fps",
+    "1080p HD video recording at 25 fps, 30 fps, or 60 fps",
+    "Cinematic mode up to 4K HDR at 30 fps",
+    "HDR video recording with Dolby Vision up to 4K at 60 fps",
+    "Slo-mo video support for 1080p at 120 fps",
+    "Time‑lapse video with stabilization",
+    "Night mode Time-lapse",
+    "QuickTake video",
+    "Cinematic video stabilization (4K, 1080p, and 720p)"
+  ],
+  faceID: "Enabled by TrueDepth camera for facial recognition",
+  applePay: [
+    "Pay with your iPhone using Face ID in stores, within apps, and on the web",
+    "Send and receive money in Messages with Apple Cash4",
+    "Complete purchases made with Apple Pay on your Mac",
+    "Pay for your ride using Express Transit"
+  ],
+  safety: [
+    "Emergency SOS via satellite",
+    "Crash Detection",
+    "Roadside Assistance via satellite"
+  ],
+  location: [
+    "GPS, GLONASS, Galileo, QZSS, and BeiDou",
+    "Digital compass",
+    "Wi‑Fi",
+    "Cellular",
+    "iBeacon microlocation"
+  ],
+  videoCalling: [
+    "FaceTime video calling over cellular or Wi‑Fi",
+    "FaceTime HD (1080p) video calling over 5G or Wi-Fi",
+    "Share experiences like movies, TV, music, and other apps in a FaceTime call with SharePlay",
+    "Screen sharing",
+    "Portrait mode in FaceTime video",
+    "Spatial Audio",
+    "Voice Isolation and Wide Spectrum microphone modes",
+    "Zoom with rear-facing camera"
+  ],
+  audioCalling: [
+    "FaceTime audio",
+    "Voice over LTE (VoLTE)8",
+    "Wi‑Fi calling8",
+    "Share experiences like movies, TV, music, and other apps in a FaceTime call with SharePlay",
+    "Screen sharing",
+    "Spatial Audio",
+    "Voice Isolation and Wide Spectrum microphone modes"
+  ],
+  audioPlayback: [
+    "Supported formats include AAC, MP3, Apple Lossless, FLAC, Dolby Digital, Dolby Digital Plus, and Dolby Atmos",
+    "Spatial Audio playback",
+    "User‑configurable maximum volume limit"
+  ],
+  videoPlayback: [
+    "Supported formats include HEVC, H.264, and ProRes",
+    "HDR with Dolby Vision, HDR10, and HLG",
+    "Up to 4K HDR AirPlay for mirroring, photos, and video out to Apple TV (2nd generation or later) or AirPlay‑enabled smart TV",
+    "Video mirroring and video out support: Up to 4K HDR through native DisplayPort output over USB-C or USB-C Digital AV Adapter (model A2119; adapter sold separately"
+  ],
+  siri: [
+    "Use your voice to send messages, set reminders, and more",
+    "Activate hands‑free with only your voice using “Siri” or “Hey Siri”",
+    "Use your voice to run shortcuts from your favorite apps"
+  ],
+  external: [
+    " Volume up/down",
+    "Ring/Silent",
+    "Side button",
+    "USB-C connector",
+    "Built‑in microphones",
+    "Built‑in stereo speaker"
+  ],
+  chargingAndExpansion:
+    "USB-C connector with support for: Charging, DisplayPort, USB 2 (up to 480Mb/s)",
+  powerAndBattery: [
+    "Video playback: Up to 20 hours",
+    "Video playback (streamed): Up to 16 hours",
+    "Audio playback: Up to 80 hours",
+    "Built-in rechargeable lithium-ion battery",
+    "MagSafe wireless charging up to 15W14",
+    "Qi wireless charging up to 7.5W14",
+    "Fast-charge capable: Up to 50% charge in around 30 minutes15 with 20W adapter or higher (available separately)"
+  ],
+  magSafe: [
+    "Wireless charging up to 15W14",
+    "Magnet array",
+    "Alignment magnet",
+    "Accessory Identification NFC",
+    "Magnetometer"
+  ],
+  sensors: [
+    "Face ID",
+    "Barometer",
+    "High dynamic range gyro",
+    "High-g accelerometer",
+    "Proximity sensor",
+    "Dual ambient light sensors"
+  ],
+  operatingSystem: "iOS",
+  accessibility:
+    "Built-in accessibility features supporting vision, mobility, hearing, and cognitive disabilities help you get the most out of your iPhone.",
+  simCard: [
+    "Dual eSIM (two active eSIMs; stores eight or more eSIMs)",
+    "iPhone 15 and iPhone 15 Plus use eSIM technology and are not compatible with physical SIM cards."
+  ]
+};
 const iphoneData = [
+  // 10
   {
+    series: "Iphone 10",
+    name: "Iphone X",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-x",
-    img: "iphonex.jpg",
-    name: "iPhone X",
-    price: 15990000,
-    discount: 20,
-    storage: "64GB",
-    ram: '3GB',
-    color: [
-      {
-        colorName: "space gray",
-        value: "#333333"
-      },
-      {
-        colorName: "silver",
-        value: "#c0c0c0"
-      }
-    ],
-    detail: {
-      screen: "5.8",
-      screentech: "Super Retina OLED display",
-      camera: "Dual 12MP camera system with Portrait mode",
-      processor: "A11 Bionic chip",
-      battery: "Up to 21 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi, Bluetooth 5.0",
-      operating: "iOS 11, upgradable to later versions",
-      face: "Advanced facial recognition for security",
-      water: "IP67 rated",
-      audio: "Stereo speakers with wider stereo sound",
-      sim: "Nano-SIM and eSIM",
-      design: "Glass front and back, stainless steel frame",
-      dimensions: "143.6 x 70.9 x 7.7 mm",
-      weight: "174 grams",
-      additional: "Animoji, Portrait Mode, AR capabilities"
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
     }
   },
   {
+    series: "Iphone 10",
+    name: "Iphone X",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-x",
-    img: "iphonex.jpg",
-    name: "iPhone X",
-    price: 25990000,
-    discount: 20,
-    storage: "256GB",
-    ram: '3GB',
-    color: [
-      {
-        colorName: "space gray",
-        value: "#333333"
-      },
-      {
-        colorName: "silver",
-        value: "#c0c0c0"
-      }
-    ],
-    detail: {
-      screen: "5.8",
-      screentech: "Super Retina OLED display",
-      camera: "Dual 12MP camera system with Portrait mode",
-      processor: "A11 Bionic chip",
-      battery: "Up to 21 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi, Bluetooth 5.0",
-      operating: "iOS 11, upgradable to later versions",
-      face: "Advanced facial recognition for security",
-      water: "IP67 rated",
-      audio: "Stereo speakers with wider stereo sound",
-      sim: "Nano-SIM and eSIM",
-      design: "Glass front and back, stainless steel frame",
-      dimensions: "143.6 x 70.9 x 7.7 mm",
-      weight: "174 grams",
-      additional: "Animoji, Portrait Mode, AR capabilities"
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
     }
   },
   {
+    series: "Iphone 10",
+    name: "Iphone X",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-xs",
-    img: "iphonexs.jpg",
-    name: "iPhone XS",
-    price: 17990000,
-    discount: 15,
-    storage: "128GB",
-    ram: '3GB',
-    color: [
-      {
-        colorName: "gold",
-        value: "#ffd700"
-      },
-      {
-        colorName: "space gray",
-        value: "#333333"
-      }
-    ],
-    detail: {
-      screen: "5.8",
-      screentech: "Super Retina OLED display",
-      camera: "Dual 12MP camera system with Smart HDR and Portrait mode",
-      processor: "A12 Bionic chip",
-      battery: "Up to 20 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi, Bluetooth 5.0",
-      operating: "iOS 12, upgradable to later versions",
-      face: "Advanced facial recognition for security",
-      water: "IP68 rated",
-      audio: "Stereo speakers with wider stereo sound",
-      sim: "Nano-SIM and eSIM",
-      design: "Glass front and back, stainless steel frame",
-      dimensions: "143.6 x 70.9 x 7.7 mm",
-      weight: "177 grams",
-      additional: "Dual SIM support, Animoji, Portrait Mode, AR capabilities"
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  // 11
+  {
+    series: "Iphone 11",
+    name: "Iphone 11",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
     }
   },
   {
+    series: "Iphone 11",
+    name: "Iphone 11",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-xs",
-    img: "iphonexs.jpg",
-    name: "iPhone XS",
-    price: 27990000,
-    discount: 15,
-    storage: "256GB",
-    ram: '3GB',
-    color: [
-      {
-        colorName: "gold",
-        value: "#ffd700"
-      },
-      {
-        colorName: "space gray",
-        value: "#333333"
-      }
-    ],
-    detail: {
-      screen: "5.8",
-      screentech: "Super Retina OLED display",
-      camera: "Dual 12MP camera system with Smart HDR and Portrait mode",
-      processor: "A12 Bionic chip",
-      battery: "Up to 20 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi, Bluetooth 5.0",
-      operating: "iOS 12, upgradable to later versions",
-      face: "Advanced facial recognition for security",
-      water: "IP68 rated",
-      audio: "Stereo speakers with wider stereo sound",
-      sim: "Nano-SIM and eSIM",
-      design: "Glass front and back, stainless steel frame",
-      dimensions: "143.6 x 70.9 x 7.7 mm",
-      weight: "177 grams",
-      additional: "Dual SIM support, Animoji, Portrait Mode, AR capabilities"
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
     }
   },
   {
+    series: "Iphone 11",
+    name: "Iphone 11",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-xr",
-    img: "iphonexr.jpg",
-    name: "iPhone XR",
-    price: 12990000,
-    discount: 10,
-    ram: '3GB',
-    storage: "128GB",
-    color: [
-      {
-        colorName: "coral",
-        value: "#ff6f61"
-      },
-      {
-        colorName: "black",
-        value: "#000000"
-      }
-    ],
-    detail: {
-      screen: "6.1",
-      screentech: "Liquid Retina LCD display",
-      camera: "12MP camera system with Smart HDR and Portrait mode",
-      processor: "A12 Bionic chip",
-      battery: "Up to 25 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi, Bluetooth 5.0",
-      operating: "iOS 12, upgradable to later versions",
-      face: "Advanced facial recognition for security",
-      water: "IP67 rated",
-      audio: "Stereo speakers with wider stereo sound",
-      sim: "Nano-SIM and eSIM",
-      design: "Glass front and back, aluminum frame",
-      dimensions: "150.9 x 75.7 x 8.3 mm",
-      weight: "194 grams",
-      additional: "Animoji, Portrait Mode, AR capabilities"
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
     }
   },
   {
+    series: "Iphone 11",
+    name: "Iphone 11 Pro",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-xs-max",
-    img: "iphonexsmax.jpg",
-    name: "iPhone XS Max",
-    price: 19990000,
-    discount: 0,
-    storage: "512GB",
-    ram: '3GB',
-    color: [
-      {
-        colorName: "space gray",
-        value: "#333333"
-      },
-      {
-        colorName: "silver",
-        value: "#c0c0c0"
-      }
-    ],
-    detail: {
-      screen: "6.5",
-      screentech: "Super Retina OLED display",
-      camera: "Dual 12MP camera system with Smart HDR and Portrait mode",
-      processor: "A12 Bionic chip",
-      battery: "Up to 20 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi, Bluetooth 5.0",
-      operating: "iOS 12, upgradable to later versions",
-      face: "Advanced facial recognition for security",
-      water: "IP68 rated",
-      audio: "Stereo speakers with wider stereo sound",
-      sim: "Nano-SIM and eSIM",
-      design: "Glass front and back, stainless steel frame",
-      dimensions: "157.5 x 77.4 x 7.7 mm",
-      weight: "208 grams",
-      additional: "Dual SIM support, Animoji, Portrait Mode, AR capabilities"
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
     }
   },
   {
+    series: "Iphone 11",
+    name: "Iphone 11 Pro",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-11",
-    img: "iphone11.jpg",
-    name: "iPhone 11",
-    price: 14990000,
-    discount: 25,
-    ram: '3GB',
-    storage: "64GB",
-    color: [
-      {
-        colorName: "black",
-        value: "#000000"
-      },
-      {
-        colorName: "purple",
-        value: "#800080"
-      }
-    ],
-    detail: {
-      screen: "6.1",
-      screentech: "Liquid Retina HD display",
-      camera: "Dual-camera system with Night mode and 4K video recording",
-      processor: "A13 Bionic chip",
-      battery: "Up to 17 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi, Bluetooth 5.0",
-      operating: "iOS 13, upgradable to later versions",
-      face: "Face ID for secure authentication",
-      water: "IP68 rated",
-      audio: "Spatial audio playback",
-      sim: "Dual SIM (Nano-SIM and eSIM)",
-      design: "Glass front and back, aluminum frame",
-      dimensions: "150.9 x 75.7 x 8.3 mm",
-      weight: "194 grams",
-      additional: "Night mode, Portrait mode, AR capabilities"
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
     }
   },
   {
+    series: "Iphone 11",
+    name: "Iphone 11 Pro",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-11-pro",
-    img: "iphone11pro.jpg",
-    name: "iPhone 11 Pro",
-    price: 21990000,
-    discount: 20,
-    ram: '3GB',
-    storage: "256GB",
-    color: [
-      {
-        colorName: "space gray",
-        value: "#333333"
-      },
-      {
-        colorName: "silver",
-        value: "#C0C0C0"
-      }
-    ],
-    detail: {
-      screen: "5.8",
-      screentech: "Super Retina XDR display",
-      camera: "Triple-camera system with Night mode and 4K video recording",
-      processor: "A13 Bionic chip",
-      battery: "Up to 18 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi 6, Bluetooth 5.0",
-      operating: "iOS 13, upgradable to later versions",
-      face: "Face ID for secure authentication",
-      water: "IP68 rated",
-      audio: "Spatial audio playback",
-      sim: "Dual SIM (Nano-SIM and eSIM)",
-      design: "Textured matte glass and stainless steel frame",
-      dimensions: "144 x 71.4 x 8.1 mm",
-      weight: "188 grams",
-      additional: "Night mode, Deep Fusion, AR capabilities"
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
     }
   },
   {
+    series: "Iphone 11",
+    name: "Iphone 11 Pro Max",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-11-pro-max",
-    img: "iphone11promax.jpg",
-    name: "iPhone 11 Pro Max",
-    ram: '3GB',
-    price: 27990000,
-    discount: 15,
-    storage: "512GB",
-    color: [
-      {
-        colorName: "midnight green",
-        value: "#004953"
-      },
-      {
-        colorName: "gold",
-        value: "#FFD700"
-      }
-    ],
-    detail: {
-      screen: "6.5",
-      screentech: "Super Retina XDR display",
-      camera:
-        "Triple-camera system with Night mode and 4K Dolby Vision HDR recording",
-      processor: "A13 Bionic chip",
-      battery: "Up to 20 hours of talk time",
-      connectivity: "4G LTE, Wi-Fi 6, Bluetooth 5.0",
-      operating: "iOS 13, upgradable to later versions",
-      face: "Face ID for secure authentication",
-      water: "IP68 rated",
-      audio: "Spatial audio playback",
-      sim: "Dual SIM (Nano-SIM and eSIM)",
-      design: "Textured matte glass and stainless steel frame",
-      dimensions: "158 x 77.8 x 8.1 mm",
-      weight: "226 grams",
-      additional: "Night mode, Deep Fusion, Slo-mo video"
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
     }
   },
   {
+    series: "Iphone 11",
+    name: "Iphone 11 Pro Max",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-12",
-    ram: '3GB',
-    img: "iphone12.jpg",
-    name: "iPhone 12",
-    price: 17990000,
-    discount: 15,
-    storage: "128GB",
-    color: [
-      {
-        colorName: "blue",
-        value: "#0000FF"
-      },
-      {
-        colorName: "green",
-        value: "#00FF00"
-      }
-    ],
-    detail: {
-      screen: "6.1",
-      screentech: "Super Retina XDR display",
-      camera:
-        "Dual-camera system with Night mode and 4K Dolby Vision HDR recording",
-      processor: "A14 Bionic chip",
-      battery: "Up to 17 hours of talk time",
-      connectivity: "5G capable, Wi-Fi 6, Bluetooth 5.0",
-      operating: "iOS 14, upgradable to later versions",
-      face: "Face ID for secure authentication",
-      water: "IP68 rated",
-      audio: "Spatial audio playback",
-      sim: "Dual SIM (Nano-SIM and eSIM)",
-      design: "Ceramic Shield front cover, Aerospace-grade aluminum edges",
-      dimensions: "146.7 x 71.5 x 7.4 mm",
-      weight: "164 grams",
-      additional: "MagSafe technology, Ceramic Shield front cover"
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
     }
   },
   {
+    series: "Iphone 11",
+    name: "Iphone 11 Pro Max",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-12-pro",
-    img: "iphone12pro.jpg",
-    ram: '3GB',
-    name: "iPhone 12 Pro",
-    price: 25990000,
-    discount: 10,
-    storage: "256GB",
-    color: [
-      {
-        colorName: "graphite",
-        value: "#808080"
-      },
-      {
-        colorName: "gold",
-        value: "#FFD700"
-      }
-    ],
-    detail: {
-      screen: "6.1",
-      screentech: "Super Retina XDR display",
-      camera: "Triple-camera system with LiDAR Scanner and Night mode",
-      processor: "A14 Bionic chip",
-      battery: "Up to 17 hours of talk time",
-      connectivity: "5G capable, Wi-Fi 6, Bluetooth 5.0",
-      operating: "iOS 14, upgradable to later versions",
-      face: "Face ID for secure authentication",
-      water: "IP68 rated",
-      audio: "Spatial audio playback",
-      sim: "Dual SIM (Nano-SIM and eSIM)",
-      design:
-        "Ceramic Shield front cover, Surgical-grade stainless steel frame",
-      dimensions: "146.7 x 71.5 x 7.4 mm",
-      weight: "189 grams",
-      additional: "LiDAR Scanner, ProRAW, MagSafe technology"
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  // 12
+  {
+    series: "Iphone 12",
+    name: "Iphone 12",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
     }
   },
   {
+    series: "Iphone 12",
+    name: "Iphone 12",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-12-pro",
-    img: "iphone12pro.jpg",
-    ram: '3GB',
-    name: "iPhone 12 Pro",
-    price: 35990000,
-    discount: 10,
-    storage: "512GB",
-    color: [
-      {
-        colorName: "graphite",
-        value: "#808080"
-      },
-      {
-        colorName: "gold",
-        value: "#FFD700"
-      }
-    ],
-    detail: {
-      screen: "6.1",
-      screentech: "Super Retina XDR display",
-      camera: "Triple-camera system with LiDAR Scanner and Night mode",
-      processor: "A14 Bionic chip",
-      battery: "Up to 17 hours of talk time",
-      connectivity: "5G capable, Wi-Fi 6, Bluetooth 5.0",
-      operating: "iOS 14, upgradable to later versions",
-      face: "Face ID for secure authentication",
-      water: "IP68 rated",
-      audio: "Spatial audio playback",
-      sim: "Dual SIM (Nano-SIM and eSIM)",
-      design:
-        "Ceramic Shield front cover, Surgical-grade stainless steel frame",
-      dimensions: "146.7 x 71.5 x 7.4 mm",
-      weight: "189 grams",
-      additional: "LiDAR Scanner, ProRAW, MagSafe technology"
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
     }
   },
   {
+    series: "Iphone 12",
+    name: "Iphone 12",
+    price: 30000000,
     category: "iphone",
-    model: "iphone-12-pro-max",
-    img: "iphone12promax.jpg",
-    name: "iPhone 12 Pro Max",
-    price: 32990000,
-    discount: 10,
-    ram: '3GB',
-    storage: "256GB",
-    color: [
-      {
-        colorName: "graphite",
-        value: "#333333"
-      },
-      {
-        colorName: "silver",
-        value: "#C0C0C0"
-      },
-      {
-        colorName: "gold",
-        value: "#FFD700"
-      },
-      {
-        colorName: "pacific blue",
-        value: "#1E90FF"
-      }
-    ],
-    detail: {
-      screen: "6.7",
-      screentech: "Super Retina XDR display",
-      camera:
-        "Triple-camera system with Night mode, ProRAW, and 4K Dolby Vision HDR recording",
-      processor: "A14 Bionic chip",
-      battery: "Up to 20 hours of talk time",
-      connectivity: "5G, Wi-Fi 6, Bluetooth 5.0",
-      operating: "iOS 14, upgradable to later versions",
-      face: "Face ID for secure authentication",
-      water: "IP68 rated",
-      audio: "Spatial audio playback",
-      sim: "Dual SIM (Nano-SIM and eSIM)",
-      design:
-        "Ceramic Shield front cover, Surgical-grade stainless steel frame",
-      dimensions: "160.8 x 78.1 x 7.4 mm",
-      weight: "228 grams",
-      additional: "Night mode, ProRAW, LiDAR scanner"
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 12",
+    name: "Iphone 12 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 12",
+    name: "Iphone 12 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 12",
+    name: "Iphone 12 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 12",
+    name: "Iphone 12 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 12",
+    name: "Iphone 12 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 12",
+    name: "Iphone 12 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  // 13
+  {
+    series: "Iphone 13",
+    name: "Iphone 13",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 13",
+    name: "Iphone 13",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 13",
+    name: "Iphone 13",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 13",
+    name: "Iphone 13 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 13",
+    name: "Iphone 13 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 13",
+    name: "Iphone 13 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 13",
+    name: "Iphone 13 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 13",
+    name: "Iphone 13 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 13",
+    name: "Iphone 13 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  // 14
+  {
+    series: "Iphone 14",
+    name: "Iphone 14",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 14",
+    name: "Iphone 14",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 14",
+    name: "Iphone 14",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 14",
+    name: "Iphone 14 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 14",
+    name: "Iphone 14 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 14",
+    name: "Iphone 14 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 14",
+    name: "Iphone 14 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 14",
+    name: "Iphone 14 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 14",
+    name: "Iphone 14 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  // 15
+  {
+    series: "Iphone 15",
+    name: "Iphone 15",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Plus",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Plus",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Plus",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Pro",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "64GB",
+      color: "Black"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "128GB",
+      color: "White"
+    }
+  },
+  {
+    series: "Iphone 15",
+    name: "Iphone 15 Pro Max",
+    price: 30000000,
+    category: "iphone",
+    stock: 10,
+    version: {
+      storage: "256GB",
+      color: "Đen"
     }
   }
 ];
+
+iphoneData.forEach(iphone => {
+  Object.keys(detail).forEach(key => {
+    iphone[key] = detail[key];
+  });
+});
 
 export default iphoneData;

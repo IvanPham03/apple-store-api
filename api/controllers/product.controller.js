@@ -1,16 +1,12 @@
 import createHttpError from "http-errors";
-import product from "../models/product.model.js";
 import productServices from "../services/product.service.js";
-
 const productService = new productServices();
 export default class productControllers {
   // query data from database with cataegory
   async getProducts(req, res) {
     try {
       // query all product === category
-      let products = await productService.getProducts(
-        req.query.category
-      );
+      let products = await productService.getProducts(req.query.category);
       return res.status(200).json(products);
     } catch (error) {
       console.log(error);
@@ -18,6 +14,20 @@ export default class productControllers {
     }
   }
 
+  // get list iphone
+  async getIphones(req, res) {
+    try {
+      return await productService.getIphones();
+    } catch (error) {
+      console.log(error);
+      res.status(500).json("error controller fetching all product");
+    }
+  }
+  async getByCategory(req, res) {
+    return await res
+      .status(200)
+      .json(await productService.getByCategory(req.query.category));
+  }
   //insert for test with multiple
   async insertTest(req, res) {
     try {
@@ -30,23 +40,36 @@ export default class productControllers {
   }
 
   // request category ex:: iphone => all iphone
-  async getproductByModel(req, res) {
+  async getProductsByCategory(req, res) {
     try {
-      let rs = await productService.getByModel(req.params.model);
-      return res.json(rs).status(200);
+      if (!req.params.key) {
+        return createHttpError.BadRequest();
+      }
+      const rs = await productService.getByCategory(req.params.key);
+      if (rs) {
+        return res.status(200).json(rs);
+      }
+      return createHttpError.NotFound();
     } catch (error) {
       console.log(error);
-      throw new Error("error controller get product by id");
+      return createHttpError.InternalServerError();
     }
   }
-  // request iphone using id
-  async getIphoneById(req, res) {
+  // request iphone using slug
+  async getIphoneBySlug(req, res) {
+    console.log(req.query["slug"]);
     try {
-      let rs = await productService.getIphoneById(req.params.id);
-      return res.json(rs).status(200);
+      if (!req.query.slug) {
+        return createHttpError.BadRequest();
+      }
+      const rs = await productService.getIphoneBySlug(req.query["slug"]);
+      if (rs) {
+        return res.status(200).json(rs);
+      }
+      return createHttpError.NotFound();
     } catch (error) {
       console.log(error);
-      throw new Error("error controller get product by id");
+      return createHttpError.InternalServerError();
     }
   }
   // filter
@@ -55,8 +78,8 @@ export default class productControllers {
       const { screenSize, storage, category, price, sort } = req.query;
       const products = await productService.getFilterProducts(
         screenSize,
-        storage, 
-        category, 
+        storage,
+        category,
         price,
         sort
       );

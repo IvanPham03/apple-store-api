@@ -8,4 +8,4 @@ db.user = user
 db.product = product
 
 
-export default db
+export default db 

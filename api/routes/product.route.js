@@ -11,9 +11,9 @@ import middleware from "../middlewares/index.js";
 const routeProduct = express.Router();
 const product = new productControllers();
 
-routeProduct.get('/', product.getProducts);
-routeProduct.get('/filter-product/', product.getFilterProducts)
+routeProduct.get('/alls', product.getProducts);
+routeProduct.get('/category/:key', product.getProductsByCategory);
+// routeProduct.get('/filter-product/', product.getFilterProducts)
 routeProduct.post('/insert-iphone-test', product.insertTest)
-routeProduct.get('/:model', product.getproductByModel);
-routeProduct.get('/iphone/:id', product.getIphoneById);
+routeProduct.get('/details', product.getIphoneBySlug);
 export default routeProduct 

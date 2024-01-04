@@ -1,13 +1,15 @@
 import express from "express";
 import cors from "cors";
 import productRoutes from './api/routes/product.route.js'
-import authRoutes from './api/routes/auth.route.js'
 import { initialUser } from "./api/config/initial.config.js";
 import redis from './api/config/redis.config.js'
+import helmet from "helmet";
 const app = express();
 // Setup Connection to DB
 // Middlewares
 app.use(express.json());
+// helmet để che dấu header 
+app.use(helmet())
 const corsOptions ={
     origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
@@ -19,7 +21,7 @@ app.use(cors(corsOptions))
 await initialUser() 
 // GROUP APP ROUTES
 app.use('/product', productRoutes);
-app.use('/auth', authRoutes);
+// app.use('/auth', authRoutes);
 
 // Handle error when not match route 
 app.use((req, res, next) =>{
