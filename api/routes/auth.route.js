@@ -13,6 +13,7 @@ authUser.post(
 );
 authUser.post(`/signin`, auth.signIn);
 authUser.get(`/user`, [middleware.authJWT.verifyToken], user.getUser);
-authUser.post(`/logout`, [middleware.authJWT.verifyRefreshToken], auth.logOut)
+authUser.post(`/logout`, [middleware.authJWT.verifyToken], auth.logOut)
+authUser.get('/test', auth.test)
 
 export default authUser;

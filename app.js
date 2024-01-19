@@ -1,13 +1,18 @@
 import express from "express";
 import cors from "cors";
 import productRoutes from './api/routes/product.route.js'
+import authRoutes from './api/routes/auth.route.js'
 import { initialUser } from "./api/config/initial.config.js";
-import redis from './api/config/redis.config.js'
+import RedisStore from "connect-redis"
+import session from "express-session"
+import {createClient} from "redis"
+import cookieParser from "cookie-parser";
 import helmet from "helmet";
 const app = express();
-// Setup Connection to DB
 // Middlewares
-app.use(express.json());
+app.use(express.json())
+// adding cookieParser to middleware stack
+app.use(cookieParser());
 // helmet để che dấu header 
 app.use(helmet())
 const corsOptions ={
@@ -17,12 +22,25 @@ const corsOptions ={
 }
 // parse requests of content-type - application/json
 app.use(cors(corsOptions))
-// create user if not count when start  
-await initialUser() 
-// GROUP APP ROUTES
-app.use('/product', productRoutes);
-// app.use('/auth', authRoutes);
+// Initialize client.
+let redisClient = createClient()
+redisClient.connect().catch(console.error)
 
+// Initialize store redis
+let redisStore = new RedisStore({
+  client: redisClient,
+  prefix: "myapp:",
+})
+
+// Initialize sesssion storage.
+app.use(
+  session({
+    store: redisStore,
+    resave: false, // required: force lightweight session keep alive (touch)
+    saveUninitialized: false, // recommended: only save session when data exists
+    secret: "keyboard cat",
+  })
+)
 // Handle error when not match route 
 app.use((req, res, next) =>{
     const error = new Error('Not found!')
@@ -38,6 +56,13 @@ app.use((err, req, res, next) => {
     }
    )
 })
+
+// create sample user
+await initialUser() 
+
+// GROUP APP ROUTES
+app.use('/product', productRoutes);
+app.use('/auth', authRoutes);
 // Error handling middleware
 // error handle 
 // Start server

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
-const KEY_ACCESS_TOKEN = process.env.KEY_ACCESS_TOKEN;
-const KEY_REFRESH_TOKEN = process.env.KEY_REFRESH_TOKEN
+const KEY_ACCESS_TOKEN = process.env.keyAccess;
+const KEY_REFRESH_TOKEN = process.env.keyAccess // key này gen từ file generatekey.js (config)
 const signAccessToken = async (userId) => {
   return new Promise((resovle, reject) => {
     const payload = {

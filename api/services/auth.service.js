@@ -1,63 +1,95 @@
-import bcrypt from "bcryptjs";
 import { Error } from "mongoose";
 import User from "../models/user.model.js";
 import jwt_service from "../config/jwt.js";
 import client from "../config/redis.config.js";
+import createHttpError from "http-errors";
+import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from "firebase/auth";
+import auth from "../config/firebase/auth.js";
 export default class authServices {
   async signUp(req, res) {
     try {
-      const { email, phone } = req.body;
-      var user = new User();
-      // Using await with User.findOne() waits for the promise to be resolved and receives the actual user document or null.
-      // Not using await with User.findOne() returns a query object, not the actual user document.
-      if (email) {
-        user = await User.findOne({ email });
-      } else {
-        user = await User.findOne({ phone });
+      const { email, password, name, phone } = req.body;
+
+      try {
+        const response = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        // tạo user mới
+        if (response.user?.uid) {
+          console.log(response.user?.uid);
+          try {
+            const newUser = User({
+              _id: response.user?.uid,
+              name: name,
+              email: email,
+            });
+            await newUser.save();
+            console.log("abc");
+            return res.status(200).send("resgister new user successfully!");
+          } catch (error) {
+            console.log("errrr" + error);
+            return res
+              .status(500)
+              .send("createHttpError.InternalServerError()");
+          }
+        }
+        return res.status(404).send(createHttpError.BadRequest()) 
+      } catch (error) {
+        // lỗi này do đã tồn tài email
+        if (error.code === "auth/email-already-in-use") {
+          return res
+            .status(409)
+            .send(
+              createHttpError.Conflict(
+                `The email address ${email} is already in use.`
+              )
+            );
+        }
+        return res.status(500).send("createHttpError.InternalServerError()");
       }
-      if (user) {
-        return res.status(500).json("User already register");
-      }
-      const newUser = User({
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone,
-        role: req.body.role,
-        password: req.body.password
-      });
-      await newUser.save();
-      return res
-        .status(200)
-        .send({ message: "resgister new user successfully!" });
     } catch (error) {
-      throw new Error(error);
+      console.log("error = " + error);
+      return res.status(500).send("createHttpError.InternalServerError()");
     }
   }
-  async signIn(req, res) {
+  async signIn( email, password) {
     try {
-      const { email, phone, password } = req.body;
+    
       var user = new User();
+
       // Using await with User.findOne() waits for the promise to be resolved and receives the actual user document or null.
-      // Not using await with User.findOne() returns a query object, not the actual user document.
+      // Not using await with user.findOne() returns a query object, not the actual user document.
       if (email) {
         user = await User.findOne({ email });
-      } else {
-        user = await User.findOne({ phone });
-      }
+      } 
       if (!user) {
         return;
       }
-      const isValid = await user.isCheckPassword(password);
-      if (!isValid) {
+      try {
+        const response = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        if(response.user?.uid){
+          const accessToken = await jwt_service.signAccessToken(response.user?.uid);
+          const refreshToken = await jwt_service.signRefreshToken(response.user?.uid);
+          return [
+            {
+              accessToken: accessToken,
+              refreshToken: refreshToken,
+              userId: response.user?.uid,
+            },
+          ];
+        }
+      } catch (error) {
+        console.error("login signInWithEmailAndPassword failed:::" + error);
         return;
       }
-      const accessToken = await jwt_service.signAccessToken(
-        user._id,
-      );
-      const refreshToken = await jwt_service.signRefreshToken(
-        user._id,
-      );
-      return [{ accessToken: accessToken, refreshToken: refreshToken , userId: user._id}];
+      return;
+      
     } catch (error) {
       throw new Error(error);
     }

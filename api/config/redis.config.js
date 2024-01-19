@@ -17,6 +17,4 @@ client.on('connect', err =>{
 
 await client.connect();
 
-    
-
 export default client

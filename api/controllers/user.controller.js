@@ -7,6 +7,7 @@ export default class userControllers {
     try {
       const data = await userService.getUser(payload.userId);
       if(data){
+        console.log(data);
         return res.status(200).json(data[0])
       }
       return res.status(401).json('Data provided invalid!')
